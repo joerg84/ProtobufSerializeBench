@@ -4,8 +4,11 @@ Benchmark comparing Protobufs SerializeToString/ParseFromString vs CopyFrom perf
 
 ## Initial Results for 1000 iterations
 
-SerializeToString: 0.010511000
-CopyFrom: 0.0052841000
+SerializeToString/ParseFromString: 0.0115321000
+
+SerializeToString (only):          0.0032351000
+
+CopyFrom:                          0.0073221000
 
 
 ## Instructions 
