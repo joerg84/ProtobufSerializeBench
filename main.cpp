@@ -66,8 +66,19 @@ int main(int argc, char const *argv[])
  
     failover_timeouts += fwkInfo2.failover_timeout(); 
   }
-  cout << "SerializeToString: " << (double)(clock() - tStart)/CLOCKS_PER_SEC << failover_timeouts << endl;
+  cout << "SerializeToString/ParseFromString: " << (double)(clock() - tStart)/CLOCKS_PER_SEC << failover_timeouts << endl;
 
+
+  // `Serialize` fwkInfo via SerializToString only 
+  tStart = clock(); // Wallclock seems ok
+  long string_length = 0;	
+
+  for (int i = 0; i < iterations; ++i) {
+    fwkInfo.SerializeToString(&serial);
+
+    string_length += serial.size(); 
+  }
+  cout << "SerializeToString (only): " << (double)(clock() - tStart)/CLOCKS_PER_SEC << failover_timeouts << endl;
 
   // `Serialize` fwkInfo via CopyFrom
   tStart = clock(); // Wallclock seems ok
